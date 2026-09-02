@@ -45,7 +45,6 @@ export default function Home() {
     <header id="top" className="site-header"><div className="header-inner">
       <a className="header-brand" href="#top" aria-label="Inicio de DB_JOLBZIE">
         <span className="header-brand-name"><span className="brand-prefix">DB</span><span className="brand-underscore">_</span><span className="brand-signature">JOLBZIE</span><span className="brand-star" aria-hidden="true">✦</span></span>
-        <span className="header-brand-caption" aria-hidden="true">colectivo creativo</span>
       </a>
       <nav className="desktop-nav" aria-label="Navegación principal">{navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
       <div className="header-actions"><SocialLinks onSelect={() => setDialog('social')} /><Button className="button header-commission" onClick={() => setDialog('commission')}>Pedir comisión <ArrowUpRight size={17} /></Button><Button variant="ghost" className="menu-toggle" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button></div>
