@@ -15,10 +15,10 @@ const displayFont = Outfit({
 const handwrittenFont = Caveat({ variable: '--font-handwritten', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'DB_JOLBZIE — Digital Artist & Roblox Creator',
-  description: 'Custom art made for your Roblox world. Explore UGC, custom faces, digital art and creative commissions by Jolbzie.',
-  openGraph: { title: 'DB_JOLBZIE — A little imagination. A world of personality.', description: 'UGC, custom faces, drawings and more, made to bring your ideas to life.', type: 'website' },
-  twitter: { card: 'summary', title: 'DB_JOLBZIE — Digital Artist & Roblox Creator', description: 'Custom art, UGC and creative commissions by Jolbzie.' },
+  title: 'DB_JOLBZIE — Arte digital y creaciones para Roblox',
+  description: 'Arte a tu medida para tu mundo de Roblox. Descubre UGC, caras personalizadas, arte digital y comisiones de Jolbzie.',
+  openGraph: { title: 'DB_JOLBZIE — Un poco de imaginación. Mucha personalidad.', description: 'UGC, caras personalizadas, dibujos y mucho más para darle vida a tus ideas.', type: 'website', locale: 'es_ES' },
+  twitter: { card: 'summary', title: 'DB_JOLBZIE — Arte digital y creaciones para Roblox', description: 'Arte personalizado, UGC y comisiones de Jolbzie.' },
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="es" className="dark">
       <body
         className={`${bodyFont.variable} ${displayFont.variable} ${handwrittenFont.variable} antialiased`}
       >
