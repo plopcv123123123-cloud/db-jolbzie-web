@@ -76,6 +76,7 @@ function Field({
 }: React.ComponentProps<'div'> & VariantProps<typeof fieldVariants>) {
   return (
     <div
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- Field may be nested in FieldLabel; a fieldset is invalid inside a label.
       role="group"
       data-slot="field"
       data-orientation={orientation}

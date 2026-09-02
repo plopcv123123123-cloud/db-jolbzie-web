@@ -29,6 +29,7 @@ function ButtonGroup({
 }: React.ComponentProps<'div'> & VariantProps<typeof buttonGroupVariants>) {
   return (
     <div
+      // oxlint-disable-next-line jsx-a11y/prefer-tag-over-role -- Related action buttons form an ARIA group without implying a form fieldset.
       role="group"
       data-slot="button-group"
       data-orientation={orientation}

@@ -15,10 +15,10 @@ const displayFont = Outfit({
 const handwrittenFont = Caveat({ variable: '--font-handwritten', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'DB_JOLBZIE — Arte digital y creaciones para Roblox',
-  description: 'Arte a tu medida para tu mundo de Roblox. Descubre UGC, caras personalizadas, arte digital y comisiones de Jolbzie.',
-  openGraph: { title: 'DB_JOLBZIE — Un poco de imaginación. Mucha personalidad.', description: 'UGC, caras personalizadas, dibujos y mucho más para darle vida a tus ideas.', type: 'website', locale: 'es_ES' },
-  twitter: { card: 'summary', title: 'DB_JOLBZIE — Arte digital y creaciones para Roblox', description: 'Arte personalizado, UGC y comisiones de Jolbzie.' },
+  title: 'DB_JOLBZIE — Colectivo creativo · Arte, UGC e ilustraciones',
+  description: 'Somos Jolbzie, un colectivo creativo. Creamos UGC para Roblox, caras personalizadas, dibujos, ilustraciones, iconos, banners y comisiones a tu medida.',
+  openGraph: { title: 'DB_JOLBZIE — Arte hecho a tu medida', description: 'Arte digital, UGC, caras personalizadas, dibujos, ilustraciones y banners. Un colectivo creativo para darle vida a tus ideas.', type: 'website', locale: 'es_ES' },
+  twitter: { card: 'summary', title: 'DB_JOLBZIE — Colectivo creativo · Arte, UGC e ilustraciones', description: 'Creamos arte digital, UGC, ilustraciones y comisiones con personalidad.' },
 };
 
 export default function RootLayout({

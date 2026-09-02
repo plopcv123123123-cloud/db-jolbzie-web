@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 // Platform marks from https://github.com/simple-icons/simple-icons/tree/develop/icons.
-// Keep the original silhouettes and use currentColor for the site's lilac palette.
+// Keep the original silhouettes; platform accents are applied by the shared styles.
 const platforms = [
   {
     name: 'Discord',
@@ -28,17 +28,17 @@ const platforms = [
   },
 ] as const;
 
-export function FooterSocialLinks({ onSelect }: { onSelect: () => void }) {
+export function SocialLinks({ onSelect }: { onSelect: () => void }) {
   return (
     <TooltipProvider delay={250}>
-      <div className="social-links" role="group" aria-label="Redes sociales">
+      <fieldset className="social-links" aria-label="Redes sociales">
         {platforms.map(platform => (
           <Tooltip key={platform.name}>
             <TooltipTrigger render={
               <Button
                 variant="outline"
                 size="icon"
-                className={`social-icon-button${platform.name === 'Discord' ? ' social-icon-primary' : ''}`}
+                className={`social-icon-button social-${platform.name.toLowerCase()}`}
                 aria-label={platform.label}
                 aria-haspopup="dialog"
                 onClick={onSelect}
@@ -51,7 +51,7 @@ export function FooterSocialLinks({ onSelect }: { onSelect: () => void }) {
             <TooltipContent className="social-tooltip" sideOffset={9}>{platform.label}</TooltipContent>
           </Tooltip>
         ))}
-      </div>
+      </fieldset>
     </TooltipProvider>
   );
 }
