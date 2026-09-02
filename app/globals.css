@@ -45,10 +45,11 @@ h1, h2, h3 { font-family: var(--font-display), sans-serif; }
 .site-header { border-bottom: 1px solid #b797da2b; background: radial-gradient(ellipse at 6% 0, #59406f23, transparent 48%), #130f1bee; }
 .header-inner { min-height: 98px; max-width: 1320px; padding: 0 40px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
 .header-brand { display: inline-flex; align-items: center; align-self: center; flex-shrink: 0; padding: 8px 0; }
-.header-brand-name { display: inline-flex; align-items: baseline; font-family: var(--font-display), sans-serif; font-size: 28px; font-weight: 750; line-height: 1; letter-spacing: -.9px; white-space: nowrap; }
-.brand-prefix { font-size: .8em; font-weight: 650; color: #cbb7e0; letter-spacing: -.6px; }
-.brand-underscore { color: #bb8ce9; margin-right: 2px; }
-.brand-signature { color: #f7efff; font-style: italic; }
+.header-brand-name { display: inline-flex; align-items: baseline; font-family: var(--font-display), sans-serif; font-size: 28px; font-weight: 750; font-style: normal; line-height: 1; letter-spacing: -.7px; white-space: nowrap; }
+.brand-prefix, .brand-signature { font: inherit; letter-spacing: inherit; }
+.brand-prefix { color: #dfc6f5; }
+.brand-underscore { color: #cbb0e8; margin: 0 1px; }
+.brand-signature { color: #f7efff; }
 .brand-star { align-self: flex-start; margin: 0 0 0 8px; font-size: 16px; color: #d2acf6; transform: rotate(-12deg); transition: transform 200ms, color 200ms; }
 .header-brand:hover .brand-star { color: #eee0ff; transform: rotate(12deg); }
 .wordmark { font-family: var(--font-display), sans-serif; font-size: 23px; letter-spacing: -.8px; font-weight: 550; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; }
