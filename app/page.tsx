@@ -37,7 +37,7 @@ function MediaPlaceholder({ label, small = false }: { label: string; small?: boo
 export default function Home() {
   const [category, setCategory] = useState('Todo');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dialog, setDialog] = useState<'commission' | 'pricing' | 'social' | null>(null);
+  const [dialog, setDialog] = useState<'commission' | 'pricing' | null>(null);
   const shownProjects = projects.filter(project => category === 'Todo' || project.category === category);
 
   return <>
@@ -47,8 +47,12 @@ export default function Home() {
         <span className="header-brand-name"><span className="brand-prefix">DB</span><span className="brand-underscore">_</span><span className="brand-signature">JOLBZIE</span><span className="brand-star" aria-hidden="true">✦</span></span>
       </a>
       <nav className="desktop-nav" aria-label="Navegación principal">{navigation.map(([label, href]) => <a key={href} href={href}>{label}</a>)}</nav>
-      <div className="header-actions"><SocialLinks onSelect={() => setDialog('social')} /><Button className="button header-commission" onClick={() => setDialog('commission')}>Pedir comisión <ArrowUpRight size={17} /></Button><Button variant="ghost" className="menu-toggle" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button></div>
-    </div>{menuOpen && <nav id="mobile-navigation" className="mobile-nav" aria-label="Navegación móvil">{navigation.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<ArrowUpRight size={16} /></a>)}</nav>}</header>
+      <div className="header-actions"><SocialLinks /><Button className="button header-commission" onClick={() => setDialog('commission')}>Pedir comisión <ArrowUpRight size={17} /></Button><Button variant="ghost" className="menu-toggle" aria-expanded={menuOpen} aria-controls="mobile-navigation" aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button></div>
+    </div>{menuOpen && <div id="mobile-navigation" className="mobile-nav">
+      <nav className="mobile-page-links" aria-label="Navegación móvil">{navigation.map(([label, href]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}<ArrowUpRight size={16} /></a>)}</nav>
+      <SocialLinks />
+      <Button className="button header-commission mobile-commission" onClick={() => { setMenuOpen(false); setDialog('commission'); }}>Pedir comisión <ArrowUpRight size={17} /></Button>
+    </div>}</header>
 
     <main id="main" className="page-shell">
       <section className="hero" aria-labelledby="hero-title"><div className="hero-copy">
@@ -78,6 +82,6 @@ export default function Home() {
 
     <footer className="site-footer"><div className="footer-inner"><div><a className="wordmark" href="#top">DB_JOLBZIE<span>✦</span></a><p>Muchas ideas. Un mismo impulso creativo.</p></div><p className="footer-copyright">© {new Date().getFullYear()} DB_JOLBZIE</p></div></footer>
 
-    <Dialog open={dialog !== null} onOpenChange={open => { if (!open) setDialog(null); }}><DialogContent className="artist-dialog"><span className="dialog-sparkle" aria-hidden="true">✦</span><p className="eyebrow">COLECTIVO DB_JOLBZIE</p><DialogTitle className="dialog-title">{dialog === 'commission' ? 'Tu idea empieza aquí.' : dialog === 'pricing' ? 'Todo claro desde el inicio.' : 'Sigamos en contacto.'}</DialogTitle><DialogDescription className="dialog-description">{dialog === 'commission' ? 'Pronto podrás pedir tu comisión. Aquí encontrarás nuestros datos de contacto y la disponibilidad del equipo cuando todo esté listo.' : dialog === 'pricing' ? 'Estamos preparando los precios y las condiciones de las comisiones. Podrás consultarlos aquí antes de que abramos los pedidos.' : 'Pronto encontrarás aquí los enlaces a nuestras redes oficiales. Discord será nuestro canal principal para hablar de tus ideas y comisiones.'}</DialogDescription><div className="dialog-note"><Heart size={16} />{dialog === 'commission' ? 'Mientras tanto, imagina tu proyecto, su estilo y esos detalles que lo hacen único.' : 'Gracias por ser parte de nuestro rincón creativo.'}</div><Button className="button button-primary" onClick={() => { setDialog(null); document.getElementById(dialog === 'pricing' ? 'terms' : 'services')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }}>{dialog === 'pricing' ? 'Ver condiciones' : 'Ver lo que ofrecemos'}<ArrowDown size={15} /></Button></DialogContent></Dialog>
+    <Dialog open={dialog !== null} onOpenChange={open => { if (!open) setDialog(null); }}><DialogContent className="artist-dialog"><span className="dialog-sparkle" aria-hidden="true">✦</span><p className="eyebrow">COLECTIVO DB_JOLBZIE</p><DialogTitle className="dialog-title">{dialog === 'commission' ? 'Tu idea empieza aquí.' : 'Todo claro desde el inicio.'}</DialogTitle><DialogDescription className="dialog-description">{dialog === 'commission' ? 'Pronto podrás pedir tu comisión. Aquí encontrarás nuestros datos de contacto y la disponibilidad del equipo cuando todo esté listo.' : 'Estamos preparando los precios y las condiciones de las comisiones. Podrás consultarlos aquí antes de que abramos los pedidos.'}</DialogDescription><div className="dialog-note"><Heart size={16} />{dialog === 'commission' ? 'Mientras tanto, imagina tu proyecto, su estilo y esos detalles que lo hacen único.' : 'Gracias por ser parte de nuestro rincón creativo.'}</div><Button className="button button-primary" onClick={() => { setDialog(null); document.getElementById(dialog === 'pricing' ? 'terms' : 'services')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }}>{dialog === 'pricing' ? 'Ver condiciones' : 'Ver lo que ofrecemos'}<ArrowDown size={15} /></Button></DialogContent></Dialog>
   </>;
 }
