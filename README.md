@@ -6,6 +6,12 @@ Spanish portfolio and commissions homepage for DB_JOLBZIE, a creative collective
 
 Use the installed Node.js runtime and pnpm. Run `pnpm dev` to start the local preview and `pnpm build` to produce the deployment build.
 
+## Temporary public preview
+
+This publication is for preview and testing only, not the final launch. Current copy, design, and SEO remain provisional. Reuse the existing Sites URL and project for updates; do not configure the final custom domain, production analytics, or payment systems at this stage.
+
+`app/layout.tsx` identifies the page as a temporary preview and supplies `noindex, nofollow` robots metadata. `next.config.ts` also sends `X-Robots-Tag: noindex, nofollow` on page responses. Do not add a robots.txt crawl block that would prevent search engines from reading these directives. Remove the preview indexing restrictions and configure final SEO only after the user approves the final design and content.
+
 ## Content handoff
 
 - `app/page.tsx` contains the hero, four services, collective introduction, terms, commission CTA, and portfolio integration. Use a plural group voice throughout. The lower sections expand to 1240px with larger text. About reuses the complete real banner, and the final CTA has a single direct Discord link. Existing commission dialogs also explain the Discord ticket flow.

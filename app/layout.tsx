@@ -15,10 +15,12 @@ const displayFont = Outfit({
 const handwrittenFont = Caveat({ variable: '--font-handwritten', subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'DB_JOLBZIE — Colectivo creativo · Arte, UGC e ilustraciones',
+  title: 'DB_JOLBZIE — Vista previa temporal',
+  // Keep the unfinished public preview out of search results until launch is approved.
+  robots: { index: false, follow: false },
   description: 'Somos Jolbzie, un colectivo creativo. Creamos UGC para Roblox, caras personalizadas, dibujos, ilustraciones, iconos, banners y comisiones a tu medida.',
-  openGraph: { title: 'DB_JOLBZIE — Arte hecho a tu medida', description: 'Arte digital, UGC, caras personalizadas, dibujos, ilustraciones y banners. Un colectivo creativo para darle vida a tus ideas.', type: 'website', locale: 'es_ES' },
-  twitter: { card: 'summary', title: 'DB_JOLBZIE — Colectivo creativo · Arte, UGC e ilustraciones', description: 'Creamos arte digital, UGC, ilustraciones y comisiones con personalidad.' },
+  openGraph: { title: 'DB_JOLBZIE — Vista previa temporal', description: 'Arte digital, UGC, caras personalizadas, dibujos, ilustraciones y banners. Un colectivo creativo para darle vida a tus ideas.', type: 'website', locale: 'es_ES' },
+  twitter: { card: 'summary', title: 'DB_JOLBZIE — Vista previa temporal', description: 'Creamos arte digital, UGC, ilustraciones y comisiones con personalidad.' },
 };
 
 export default function RootLayout({
