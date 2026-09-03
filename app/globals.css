@@ -104,18 +104,19 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 .label-star { font-size: 17px; line-height: 1; color: #b290d2; }
 .label-line { width: 40px; height: 1px; background: linear-gradient(90deg, #a584bf70, #a584bf10); margin-left: 5px; }
 .services-section { padding: 13px 0 53px; }
-.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 24px; }
-.service { padding: 0 28px; border-left: 1px solid #ad8ec02a; }
-.service:first-child { padding-left: 0; border-left: 0; }
-.service:last-child { padding-right: 0; }
-.service-top { display: flex; justify-content: space-between; align-items: center; height: 63px; margin-bottom: 7px; }
-.service-number { font-family: var(--font-display), sans-serif; font-size: 58px; font-weight: 300; letter-spacing: -2px; color: #b08aca; line-height: 1; }
-.service:nth-child(even) .service-number { color: #806a99; }
-.service-accent { font-size: 20px; color: #9e7ab959; margin: 6px 13px 0 0; transform: rotate(-10deg); }
+.services-section .section-label { font-size: 17px; font-weight: 600; letter-spacing: 1.1px; }
+.services-section .services-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 30px; }
+.services-section .service { display: flex; flex-direction: column; min-width: 0; padding: 0 24px; border-left: 1px solid #ad8ec02a; }
+.services-section .service:first-child { padding-left: 0; border-left: 0; }
+.services-section .service:last-child { padding-right: 0; }
+.services-section .service-top { display: flex; justify-content: space-between; align-items: center; height: 40px; margin-bottom: 18px; }
+.services-section .service-number { font-family: var(--font-display), sans-serif; font-size: 34px; font-weight: 450; letter-spacing: -.7px; color: #bf9bdb; line-height: 1; }
+.services-section .service:nth-child(even) .service-number { color: #ab8dc3; }
+.service-accent { font-size: 20px; color: #b18bc078; margin: 6px 13px 0 0; transform: rotate(-10deg); }
 .service:nth-child(3) .service-accent { font-size: 13px; }
-.service h3 { font-size: 19px; font-weight: 450; letter-spacing: -.3px; margin-bottom: 10px; }
-.service p { font-size: 12px; line-height: 1.8; color: #aea2bb; max-width: 230px; }
-.service-tag { display: block; color: #b59bc9; font-size: 9px; margin-top: 17px; letter-spacing: .2px; }
+.services-section .service h3 { min-height: 2.5em; font-size: 24px; font-weight: 600; letter-spacing: -.35px; line-height: 1.25; margin-bottom: 16px; }
+.services-section .service p { flex: 1; font-size: 16px; line-height: 1.7; color: #bfb0cd; max-width: none; }
+.services-section .service-tag { display: block; color: #d0adee; font-size: 16px; font-weight: 600; line-height: 1.5; margin-top: 20px; letter-spacing: .1px; }
 .service-tag::before { content: '—'; padding-right: 7px; opacity: .6; }
 .portfolio-section { padding: 13px 0 31px; }
 .portfolio-heading { display: flex; align-items: center; gap: 48px; margin-bottom: 24px; }
@@ -349,5 +350,22 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
   .face-preview-header [data-slot='dialog-title'] { font-size: 19px; }
   .face-preview-stage { height: min(58dvh, 480px); }
   .face-preview-thumbnail, .face-preview-image { padding: 8px; }
+}
+@media (max-width: 1024px) {
+  .services-section .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+  .services-section .service:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .services-section .service:nth-child(even) { padding-right: 0; }
+  .services-section .service h3 { min-height: 0; }
+}
+@media (max-width: 600px) {
+  .services-section .section-label { font-size: 16px; letter-spacing: .8px; }
+  .services-section .services-grid { grid-template-columns: minmax(0, 1fr); margin-top: 28px; row-gap: 28px; }
+  .services-section .service { padding: 0; border-left: 0; }
+  .services-section .service + .service { padding-top: 26px; border-top: 1px solid #ad8ec02a; }
+  .services-section .service-top { height: 36px; margin-bottom: 16px; }
+  .services-section .service-number { font-size: 32px; }
+  .services-section .service h3 { font-size: 23px; margin-bottom: 14px; }
+  .services-section .service p { font-size: 15px; }
+  .services-section .service-tag { font-size: 16px; margin-top: 18px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .face-artwork-button:hover, .face-artwork-button:focus-visible, .face-artwork-button:hover .face-artwork-image, .face-artwork-button:focus-visible .face-artwork-image { transform: none; } }

@@ -10,10 +10,10 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/compone
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 const services = [
-  { title: 'Comisiones UGC', description: 'Pequeños detalles, mucha personalidad. Accesorios únicos para tu mundo de Roblox.', tag: 'Para destacar a tu manera' },
-  { title: 'Caras personalizadas', description: 'Un poco de actitud, un poco de encanto. Expresiones que van contigo.', tag: 'Todo está en la expresión' },
+  { title: 'Comisiones UGC', description: 'Pequeños detalles, mucha personalidad. Creamos accesorios UGC únicos para complementar tu estilo y darle identidad a cada diseño.', tag: 'Para destacar a tu manera' },
+  { title: 'Caras personalizadas', description: 'Un poco de actitud, un poco de encanto. Expresiones diseñadas para transmitir exactamente el estilo que buscas.', tag: 'Todo está en la expresión' },
   { title: 'Arte digital', description: 'Dibujos, ilustraciones, iconos y banners creados por nuestro equipo para darle forma a tus ideas.', tag: 'Del boceto a la historia' },
-  { title: 'Pedidos personalizados', description: '¿Tienes algo diferente en mente? Démosle forma a tu idea.', tag: 'Tu idea empieza aquí' },
+  { title: 'Pedidos personalizados', description: '¿Tienes algo diferente en mente? Cuéntanos tu idea y creemos algo especialmente para ti.', tag: 'Tu idea empieza aquí' },
 ];
 const terms = ['Pagos', 'Revisiones', 'Tiempo de entrega', 'Derechos de uso', 'Uso comercial', 'Reembolsos'];
 const navigation = [['Portafolio', '#portfolio'], ['Servicios', '#services'], ['Nosotros', '#about'], ['Términos', '#terms']];
