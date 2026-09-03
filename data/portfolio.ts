@@ -1,5 +1,6 @@
 import faceData from './faces.json';
 import drawingData from './drawings.json';
+import { ugcProjects, type UgcProject } from './ugc';
 
 export const portfolioFilters = ['Todos', 'UGC', 'Caras', 'Dibujos'] as const;
 export type PortfolioFilter = typeof portfolioFilters[number];
@@ -18,15 +19,7 @@ export type PortfolioArtwork = {
   thumbnailHeight: number;
 };
 
-type UpcomingProject = {
-  id: string;
-  kind: 'upcoming';
-  category: 'UGC';
-  title: string;
-  label: string;
-};
-
-export type PortfolioItem = PortfolioArtwork | UpcomingProject;
+export type PortfolioItem = PortfolioArtwork | UgcProject;
 
 export const faceArtworks: PortfolioArtwork[] = faceData.map(artwork => ({
   ...artwork,
@@ -41,22 +34,22 @@ export const drawingArtworks: PortfolioArtwork[] = drawingData.map(artwork => ({
 }));
 
 export const portfolioItems: PortfolioItem[] = [
-  { id: 'ugc-upcoming', kind: 'upcoming', category: 'UGC', title: 'Un mundo de pequeños detalles', label: 'Proyecto UGC destacado' },
+  ...ugcProjects,
   ...faceArtworks,
   ...drawingArtworks,
 ];
 
 // Edit this short selection independently of the complete category collections.
-// UGC retains its existing placeholder until real assets are supplied.
 export const featuredPortfolioIds = [
   'ilustracion-02',
   'cara-01',
   'ilustracion-18',
   'cara-14',
   'ilustracion-10',
-  'ugc-upcoming',
+  'vara-celestial',
   'ilustracion-21',
   'cara-07',
+  'capa-de-teto',
 ] as const;
 
 export const featuredPortfolioItems = featuredPortfolioIds
