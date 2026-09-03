@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ArrowDown, ArrowUpRight, Heart, Menu, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SocialLinks } from '@/components/social-links';
+import { PortfolioGallery } from '@/components/portfolio-gallery';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -13,11 +14,6 @@ const services = [
   { title: 'Caras personalizadas', description: 'Un poco de actitud, un poco de encanto. Expresiones que van contigo.', tag: 'Todo está en la expresión' },
   { title: 'Arte digital', description: 'Dibujos, ilustraciones, iconos y banners creados por nuestro equipo para darle forma a tus ideas.', tag: 'Del boceto a la historia' },
   { title: 'Pedidos personalizados', description: '¿Tienes algo diferente en mente? Démosle forma a tu idea.', tag: 'Tu idea empieza aquí' },
-];
-const projects = [
-  { category: 'UGC', title: 'Un mundo de pequeños detalles', label: 'Proyecto UGC destacado', className: 'featured' },
-  { category: 'Caras', title: 'Expresiones a tu manera', label: 'Muestra de cara personalizada', className: 'faces' },
-  { category: 'Dibujos', title: 'Ideas que se vuelven arte', label: 'Muestra de arte digital', className: 'drawings' },
 ];
 const terms = ['Pagos', 'Revisiones', 'Tiempo de entrega', 'Derechos de uso', 'Uso comercial', 'Reembolsos'];
 const navigation = [['Portafolio', '#portfolio'], ['Servicios', '#services'], ['Nosotros', '#about'], ['Términos', '#terms']];
@@ -36,10 +32,8 @@ function MediaPlaceholder({ label, small = false }: { label: string; small?: boo
 }
 
 export default function Home() {
-  const [category, setCategory] = useState('Todo');
   const [menuOpen, setMenuOpen] = useState(false);
   const [dialog, setDialog] = useState<'commission' | 'pricing' | null>(null);
-  const shownProjects = projects.filter(project => category === 'Todo' || project.category === category);
 
   return <>
     <a href="#main" className="skip-link">Saltar al contenido</a>
@@ -69,10 +63,7 @@ export default function Home() {
 
       <section id="services" className="services-section" aria-labelledby="services-title"><SectionLabel><h2 id="services-title">LO QUE OFRECEMOS</h2></SectionLabel><div className="services-grid">{services.map((service, index) => <article className="service" key={service.title}><div className="service-top"><span className="service-number">0{index + 1}</span><span className="service-accent" aria-hidden="true">{index === 1 ? '✧' : index === 3 ? '♡' : '✦'}</span></div><h3>{service.title}</h3><p>{service.description}</p><span className="service-tag">{service.tag}</span></article>)}</div></section>
 
-      <section id="portfolio" className="portfolio-section" aria-labelledby="portfolio-title"><div className="portfolio-heading"><SectionLabel><h2 id="portfolio-title">TRABAJOS DESTACADOS</h2></SectionLabel><fieldset className="gallery-filters" aria-label="Filtrar el portafolio">{['Todo', 'UGC', 'Caras', 'Dibujos'].map(filter => <Button key={filter} variant="ghost" className={`filter-button ${category === filter ? 'active' : ''}`} aria-pressed={category === filter} aria-controls="portfolio-gallery" onClick={() => setCategory(filter)}>{filter}</Button>)}</fieldset><span className="gallery-aside">un vistazo a lo que creamos <Star /></span></div>
-        <div id="portfolio-gallery" className={`portfolio-grid ${category !== 'Todo' ? 'filtered' : ''}`} aria-live="polite">{shownProjects.map(project => <article className={`project ${project.className}`} key={project.category}><div className="project-frame"><span className="project-badge">{project.category === 'UGC' ? 'DESTACADO' : project.category.toUpperCase()}</span><MediaPlaceholder label={project.label} small /><span className="frame-corner" aria-hidden="true">✧</span></div><div className="project-caption"><div><h3>{project.title}</h3><p>{project.category} <span>· Próximamente</span></p></div></div></article>)}</div>
-        <p className="gallery-note">Algo bonito está tomando forma. Pronto verás nuestras creaciones aquí.</p>
-      </section>
+      <PortfolioGallery />
 
       <div className="about-terms"><section id="about" className="about-section" aria-labelledby="about-title"><SectionLabel><h2 id="about-title">SOBRE NOSOTROS</h2></SectionLabel><div className="about-content"><div className="about-art"><div className="about-outline" aria-hidden="true" /><div className="about-media"><MediaPlaceholder label="Nuestro colectivo" small /></div><Star className="about-star" /><span className="about-sticker" aria-hidden="true">nuestro equipo ♡</span></div><div className="about-copy"><h3>Hola, somos Jolbzie<span className="lilac">.</span> <span className="greeting-star" aria-hidden="true">✳</span></h3><p>Somos un grupo creativo que trabaja en UGC, caras personalizadas, dibujos, ilustraciones y arte digital.</p><p>Nos encanta convertir ideas en creaciones con personalidad. Cuidamos cada detalle y unimos nuestros estilos para crear algo único, muy <em>tuyo</em>.</p><p className="about-thanks">Gracias por estar aquí. Creemos algo que te encante.</p><span className="signature handwritten">— Equipo Jolbzie ♡</span></div></div></section>
       <section id="terms" className="terms-section" aria-labelledby="terms-title"><SectionLabel><h2 id="terms-title">TÉRMINOS DE SERVICIO</h2></SectionLabel><p className="terms-intro">Todo claro antes de empezar.</p><Accordion className="terms-accordion">{terms.map(term => <AccordionItem key={term} value={term}><AccordionTrigger className="terms-trigger">{term}<Plus className="term-plus" size={14} /></AccordionTrigger><AccordionContent className="terms-content">La información sobre {term.toLocaleLowerCase('es')} estará disponible aquí antes de abrir las comisiones. Vuelve pronto para consultar las condiciones de Jolbzie.</AccordionContent></AccordionItem>)}</Accordion></section></div>

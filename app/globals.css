@@ -268,4 +268,61 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
   .hero-buttons .button { font-size: 11px; padding: 0 15px; gap: 8px; }
   .hero-footnote { font-size: 9px; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+.artwork-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 20px; }
+.portfolio-artwork { min-width: 0; margin: 0; }
+.face-artwork-button { display: block; position: relative; width: 100%; height: auto; aspect-ratio: 1; padding: 14px; overflow: hidden; border: 1px solid #68517755; border-radius: 18px; background: radial-gradient(ellipse at top, #33273f, #20192b); transition: border-color 220ms, box-shadow 220ms, background 220ms; }
+.face-artwork-image { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 250ms; }
+.face-artwork-button:hover, .face-artwork-button:focus-visible { background: radial-gradient(ellipse at top, #3b2b4c, #251b31); border-color: #bc97df; box-shadow: 0 5px 25px #a175d021; }
+.face-artwork-button:hover .face-artwork-image, .face-artwork-button:focus-visible .face-artwork-image { transform: scale(1.025); }
+.face-zoom-mark { position: absolute; bottom: 10px; right: 10px; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #c5a7db40; border-radius: 50%; background: #24182eee; color: #e8d1fc; opacity: 0; transition: opacity 200ms; }
+.face-artwork-button:hover .face-zoom-mark, .face-artwork-button:focus-visible .face-zoom-mark { opacity: 1; }
+.portfolio-artwork figcaption { display: flex; justify-content: space-between; gap: 8px; padding: 12px 3px 0; color: #d4c2e2; font-size: 11px; }
+.artwork-number { color: #9c83b2; font-size: 10px; }
+.portfolio-upcoming { min-width: 0; }
+.upcoming-artwork-frame { display: flex; position: relative; align-items: center; justify-content: center; aspect-ratio: 1; border: 1px solid #82708f65; border-radius: 18px; background: linear-gradient(140deg, #33293f, #44334f); }
+.upcoming-artwork-frame .placeholder-content { padding: 20px; }
+.upcoming-artwork-frame .placeholder-label { font-size: 9px; letter-spacing: 1.4px; }
+.upcoming-artwork-caption { padding: 12px 3px 0; }
+.upcoming-artwork-caption h3 { font-size: 12px; font-weight: 450; color: #d4c2e2; }
+.upcoming-artwork-caption p { margin-top: 5px; color: #a58bb9; font-size: 10px; }
+.gallery-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; margin-top: 29px; }
+.gallery-count { font-size: 11px; color: #b5a0c6; }
+.gallery-more { margin-left: auto; height: 40px; font-size: 11px; }
+.gallery-hint { width: 100%; font-size: 10px; color: #a18ab3; }
+.face-lightbox-overlay { background: #0a0714df; backdrop-filter: blur(7px); }
+.face-lightbox { width: min(840px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 24px); overflow: auto; padding: 20px; gap: 15px; border: 1px solid #9872b45e; border-radius: 24px; background: #1c1428; box-shadow: 0 25px 100px #0008; }
+.face-preview-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
+.face-preview-header .eyebrow { font-size: 8px; letter-spacing: 1.5px; margin-bottom: 9px; }
+.face-preview-header [data-slot='dialog-title'] { font-size: 22px; font-weight: 500; }
+.face-preview-stage { position: relative; height: min(65dvh, 700px); width: 100%; border-radius: 16px; background: #272033; }
+.face-preview-thumbnail, .face-preview-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; padding: 14px; object-fit: contain; }
+.face-preview-image { opacity: 0; transition: opacity 160ms; }
+.face-preview-image.is-loaded { opacity: 1; }
+.face-preview-status { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 30px); padding: 8px 14px; border-radius: 8px; background: #20132feb; color: #eadbf5; font-size: 11px; }
+.face-preview-navigation { display: flex; align-items: center; justify-content: center; gap: 24px; }
+.face-preview-control { flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid #9676b057; border-radius: 11px; background: #2b1e38; color: #e7cffb; }
+.face-preview-control:hover { background: #423054; border-color: #c4a0e3; }
+.face-preview-counter { min-width: 66px; text-align: center; font-size: 12px; color: #cbb1de; font-variant-numeric: tabular-nums; }
+@media (max-width: 1000px) { .artwork-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .artwork-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px 13px; }
+  .face-artwork-button { padding: 9px; border-radius: 13px; }
+  .portfolio-artwork figcaption { font-size: 10px; padding-top: 10px; gap: 5px; }
+  .artwork-number { font-size: 8px; }
+  .upcoming-artwork-frame { border-radius: 13px; }
+  .upcoming-artwork-frame .placeholder-content { padding: 12px; gap: 8px; }
+  .upcoming-artwork-frame .placeholder-label { font-size: 8px; letter-spacing: 1px; }
+  .upcoming-artwork-frame .placeholder-note { font-size: 8px; }
+  .upcoming-artwork-frame .placeholder-mark { width: 26px; height: 26px; margin: 0; }
+  .upcoming-artwork-frame .project-badge { top: 10px; left: 10px; font-size: 6px; }
+  .upcoming-artwork-caption h3 { font-size: 10px; line-height: 1.6; }
+  .upcoming-artwork-caption p { font-size: 8px; }
+  .gallery-bottom { gap: 15px 10px; }
+  .gallery-count { font-size: 10px; }
+  .gallery-more { font-size: 10px; padding: 0 12px; }
+  .face-lightbox { padding: 14px; border-radius: 18px; gap: 12px; }
+  .face-preview-header [data-slot='dialog-title'] { font-size: 19px; }
+  .face-preview-stage { height: min(58dvh, 480px); }
+  .face-preview-thumbnail, .face-preview-image { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .face-artwork-button:hover .face-artwork-image, .face-artwork-button:focus-visible .face-artwork-image { transform: none; } }
