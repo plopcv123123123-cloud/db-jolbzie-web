@@ -1,0 +1,233 @@
+[
+  {
+    "id": "ilustracion-02",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de cabello oscuro, orejas de gato y ojos violetas sobre un fondo cuadriculado.",
+    "thumbnail": "/portfolio/drawings/ilustracion-02-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-02.webp",
+    "width": 2560,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-18",
+    "title": "Ilustración",
+    "alt": "Ilustración: Retrato de cabello oscuro y sombreado detallado en tonos grises y violetas.",
+    "thumbnail": "/portfolio/drawings/ilustracion-18-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-18.webp",
+    "width": 659,
+    "height": 821,
+    "thumbnailWidth": 659,
+    "thumbnailHeight": 821
+  },
+  {
+    "id": "ilustracion-10",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de cabello turquesa y vestido violeta rodeado de pequeños objetos flotantes.",
+    "thumbnail": "/portfolio/drawings/ilustracion-10-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-10.webp",
+    "width": 2560,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-05",
+    "title": "Ilustración",
+    "alt": "Ilustración: Composición de dos vistas de un personaje con cabello castaño y colores vivos.",
+    "thumbnail": "/portfolio/drawings/ilustracion-05-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-05.webp",
+    "width": 2000,
+    "height": 2000,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-04",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de eriza rosada con vestido rojo, botas y una pose alegre.",
+    "thumbnail": "/portfolio/drawings/ilustracion-04-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-04.webp",
+    "width": 1441,
+    "height": 2560,
+    "thumbnailWidth": 506,
+    "thumbnailHeight": 900
+  },
+  {
+    "id": "ilustracion-11",
+    "title": "Ilustración",
+    "alt": "Ilustración: Retrato de un personaje con cabello naranja y rosa, gafas y prendas verdes.",
+    "thumbnail": "/portfolio/drawings/ilustracion-11-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-11.webp",
+    "width": 2500,
+    "height": 2500,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-08",
+    "title": "Ilustración",
+    "alt": "Ilustración: Retrato en tonos azules de un personaje sonriente entre cortinas rojas.",
+    "thumbnail": "/portfolio/drawings/ilustracion-08-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-08.webp",
+    "width": 840,
+    "height": 840,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-21",
+    "title": "Ilustración",
+    "alt": "Ilustración: Dos interpretaciones de un personaje de cabello rosado junto a una pequeña poni amarilla.",
+    "thumbnail": "/portfolio/drawings/ilustracion-21-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-21.webp",
+    "width": 2377,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 775
+  },
+  {
+    "id": "ilustracion-22",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje con traje de arlequín rojo y azul y ojos con formas de cruz.",
+    "thumbnail": "/portfolio/drawings/ilustracion-22-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-22.webp",
+    "width": 2261,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 815
+  },
+  {
+    "id": "ilustracion-07",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de cabello violeta, grandes alas blancas y medias a rayas azules.",
+    "thumbnail": "/portfolio/drawings/ilustracion-07-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-07.webp",
+    "width": 2000,
+    "height": 2000,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-14",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje sentado con sombrero negro, ropa oscura y medias de encaje.",
+    "thumbnail": "/portfolio/drawings/ilustracion-14-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-14.webp",
+    "width": 2560,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-03",
+    "title": "Ilustración",
+    "alt": "Ilustración: Dibujo a línea de un personaje con el cabello sobre un ojo y una chaqueta abierta.",
+    "thumbnail": "/portfolio/drawings/ilustracion-03-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-03.webp",
+    "width": 2000,
+    "height": 2000,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-19",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje en tonos grises con líneas luminosas turquesas en la cara.",
+    "thumbnail": "/portfolio/drawings/ilustracion-19-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-19.webp",
+    "width": 2136,
+    "height": 1935,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 652
+  },
+  {
+    "id": "ilustracion-06",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de cabello gris, gafas violetas, sombrero de copa y traje.",
+    "thumbnail": "/portfolio/drawings/ilustracion-06-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-06.webp",
+    "width": 1312,
+    "height": 1363,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 748
+  },
+  {
+    "id": "ilustracion-09",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de cabello violeta y ropa oscura, con una mano levantada.",
+    "thumbnail": "/portfolio/drawings/ilustracion-09-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-09.webp",
+    "width": 2000,
+    "height": 2000,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-17",
+    "title": "Ilustración",
+    "alt": "Ilustración: Retrato oscuro de un personaje de cabello negro con una textura de ruido de colores.",
+    "thumbnail": "/portfolio/drawings/ilustracion-17-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-17.webp",
+    "width": 910,
+    "height": 838,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 663
+  },
+  {
+    "id": "ilustracion-20",
+    "title": "Ilustración",
+    "alt": "Ilustración: Retrato en escala de grises de un personaje con gafas, cabello corto y collar oscuro.",
+    "thumbnail": "/portfolio/drawings/ilustracion-20-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-20.webp",
+    "width": 1055,
+    "height": 1141,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 779
+  },
+  {
+    "id": "ilustracion-12",
+    "title": "Ilustración",
+    "alt": "Ilustración: Personaje de eriza de cabello malva, vestido rojo y guantes blancos.",
+    "thumbnail": "/portfolio/drawings/ilustracion-12-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-12.webp",
+    "width": 2500,
+    "height": 2500,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-15",
+    "title": "Ilustración",
+    "alt": "Ilustración: Versión de fondo gris de un personaje sentado con sombrero negro y medias de encaje.",
+    "thumbnail": "/portfolio/drawings/ilustracion-15-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-15.webp",
+    "width": 2560,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-13",
+    "title": "Ilustración",
+    "alt": "Ilustración: Avatar de estilo Roblox con ropa negra y un sombrero de bruja.",
+    "thumbnail": "/portfolio/drawings/ilustracion-13-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-13.webp",
+    "width": 2560,
+    "height": 2560,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 720
+  },
+  {
+    "id": "ilustracion-01",
+    "title": "Ilustración",
+    "alt": "Ilustración: Banner de Jolbzie con tres personajes y luces violetas y fucsias.",
+    "thumbnail": "/portfolio/drawings/ilustracion-01-mini.webp",
+    "src": "/portfolio/drawings/ilustracion-01.webp",
+    "width": 1440,
+    "height": 476,
+    "thumbnailWidth": 720,
+    "thumbnailHeight": 238
+  }
+]

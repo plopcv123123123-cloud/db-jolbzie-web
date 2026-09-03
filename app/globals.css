@@ -270,8 +270,12 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 }
 .artwork-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 20px; }
 .portfolio-artwork { min-width: 0; margin: 0; }
+.artwork-gallery-editorial { display: block; column-count: 3; column-gap: 22px; }
+.artwork-gallery-editorial > * { display: inline-block; width: 100%; margin-bottom: 28px; vertical-align: top; break-inside: avoid; }
 .face-artwork-button { display: block; position: relative; width: 100%; height: auto; aspect-ratio: 1; padding: 14px; overflow: hidden; border: 1px solid #68517755; border-radius: 18px; background: radial-gradient(ellipse at top, #33273f, #20192b); transition: border-color 220ms, box-shadow 220ms, background 220ms; }
 .face-artwork-image { display: block; width: 100%; height: 100%; object-fit: contain; transition: transform 250ms; }
+.portfolio-drawing .face-artwork-button { aspect-ratio: auto; padding: 10px; border-radius: 14px; background: #2c2436; }
+.portfolio-drawing .face-artwork-image { height: auto; border-radius: 5px; }
 .face-artwork-button:hover, .face-artwork-button:focus-visible { background: radial-gradient(ellipse at top, #3b2b4c, #251b31); border-color: #bc97df; box-shadow: 0 5px 25px #a175d021; }
 .face-artwork-button:hover .face-artwork-image, .face-artwork-button:focus-visible .face-artwork-image { transform: scale(1.025); }
 .face-zoom-mark { position: absolute; bottom: 10px; right: 10px; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #c5a7db40; border-radius: 50%; background: #24182eee; color: #e8d1fc; opacity: 0; transition: opacity 200ms; }
@@ -291,6 +295,9 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 .gallery-hint { width: 100%; font-size: 10px; color: #a18ab3; }
 .face-lightbox-overlay { background: #0a0714df; backdrop-filter: blur(7px); }
 .face-lightbox { width: min(840px, calc(100vw - 32px)); max-width: none; max-height: calc(100dvh - 24px); overflow: auto; padding: 20px; gap: 15px; border: 1px solid #9872b45e; border-radius: 24px; background: #1c1428; box-shadow: 0 25px 100px #0008; }
+.drawing-lightbox { width: min(1240px, calc(100vw - 32px)); }
+.drawing-lightbox .face-preview-stage { height: min(76dvh, calc(100dvh - 190px)); background: #2c2436; }
+.drawing-lightbox .face-preview-image, .drawing-lightbox .face-preview-thumbnail { padding: 6px; }
 .face-preview-header { display: flex; align-items: center; justify-content: space-between; gap: 15px; }
 .face-preview-header .eyebrow { font-size: 8px; letter-spacing: 1.5px; margin-bottom: 9px; }
 .face-preview-header [data-slot='dialog-title'] { font-size: 22px; font-weight: 500; }
@@ -303,9 +310,10 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 .face-preview-control { flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid #9676b057; border-radius: 11px; background: #2b1e38; color: #e7cffb; }
 .face-preview-control:hover { background: #423054; border-color: #c4a0e3; }
 .face-preview-counter { min-width: 66px; text-align: center; font-size: 12px; color: #cbb1de; font-variant-numeric: tabular-nums; }
-@media (max-width: 1000px) { .artwork-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1000px) { .artwork-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } .artwork-gallery-editorial { column-count: 2; } }
 @media (max-width: 600px) {
   .artwork-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 23px 13px; }
+  .artwork-gallery-editorial > * { margin-bottom: 23px; }
   .face-artwork-button { padding: 9px; border-radius: 13px; }
   .portfolio-artwork figcaption { font-size: 10px; padding-top: 10px; gap: 5px; }
   .artwork-number { font-size: 8px; }
@@ -325,4 +333,5 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
   .face-preview-stage { height: min(58dvh, 480px); }
   .face-preview-thumbnail, .face-preview-image { padding: 8px; }
 }
+@media (max-width: 520px) { .artwork-gallery-editorial { column-count: 1; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .face-artwork-button:hover .face-artwork-image, .face-artwork-button:focus-visible .face-artwork-image { transform: none; } }

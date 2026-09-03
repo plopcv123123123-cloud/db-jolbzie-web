@@ -1,12 +1,13 @@
 import faceData from './faces.json';
+import drawingData from './drawings.json';
 
-export const portfolioFilters = ['Todo', 'UGC', 'Caras', 'Dibujos'] as const;
+export const portfolioFilters = ['Todos', 'UGC', 'Caras', 'Dibujos'] as const;
 export type PortfolioFilter = typeof portfolioFilters[number];
 
-export type FaceArtwork = {
+export type PortfolioArtwork = {
   id: string;
   kind: 'artwork';
-  category: 'Caras';
+  category: 'Caras' | 'Dibujos';
   title: string;
   alt: string;
   thumbnail: string;
@@ -20,22 +21,32 @@ export type FaceArtwork = {
 type UpcomingProject = {
   id: string;
   kind: 'upcoming';
-  category: 'UGC' | 'Dibujos';
+  category: 'UGC';
   title: string;
   label: string;
 };
 
-export type PortfolioItem = FaceArtwork | UpcomingProject;
+export type PortfolioItem = PortfolioArtwork | UpcomingProject;
 
-export const faceArtworks: FaceArtwork[] = faceData.map(artwork => ({
+export const faceArtworks: PortfolioArtwork[] = faceData.map(artwork => ({
   ...artwork,
   kind: 'artwork',
   category: 'Caras',
 }));
 
+export const drawingArtworks: PortfolioArtwork[] = drawingData.map(artwork => ({
+  ...artwork,
+  kind: 'artwork',
+  category: 'Dibujos',
+}));
+
+// Alternate categories so the combined selection gives both collections space.
+const combinedArtworks = Array.from(
+  { length: Math.max(faceArtworks.length, drawingArtworks.length) },
+  (_, index) => [drawingArtworks[index], faceArtworks[index]].filter((item): item is PortfolioArtwork => Boolean(item)),
+).flat();
+
 export const portfolioItems: PortfolioItem[] = [
   { id: 'ugc-upcoming', kind: 'upcoming', category: 'UGC', title: 'Un mundo de pequeños detalles', label: 'Proyecto UGC destacado' },
-  ...faceArtworks.slice(0, 1),
-  { id: 'drawings-upcoming', kind: 'upcoming', category: 'Dibujos', title: 'Ideas que se vuelven arte', label: 'Muestra de arte digital' },
-  ...faceArtworks.slice(1),
+  ...combinedArtworks,
 ];
