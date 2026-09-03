@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Plus, X, ZoomIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,13 +9,20 @@ import { featuredPortfolioItems, portfolioFilters, portfolioItems, type Portfoli
 
 const PAGE_SIZE = 9;
 
+function ArtworkWatermark() {
+  return <span className="artwork-watermark" aria-hidden="true">DB_JOLBZIE</span>;
+}
+
 function ArtworkPreview({ artwork }: { artwork: PortfolioArtwork }) {
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
 
   return <div className="face-preview-stage" aria-busy={!loaded && !failed}>
-    {!loaded && <Image className="face-preview-thumbnail" src={artwork.thumbnail} width={artwork.thumbnailWidth} height={artwork.thumbnailHeight} alt="" aria-hidden="true" unoptimized />}
-    <Image className={`face-preview-image ${loaded ? 'is-loaded' : ''}`} src={artwork.src} width={artwork.width} height={artwork.height} alt={artwork.alt} loading="eager" unoptimized onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+    <div className="preview-artwork-canvas" style={{ '--artwork-ratio': artwork.width / artwork.height } as CSSProperties}>
+      {!loaded && <Image className="face-preview-thumbnail" src={artwork.thumbnail} width={artwork.thumbnailWidth} height={artwork.thumbnailHeight} alt="" aria-hidden="true" unoptimized />}
+      <Image className={`face-preview-image ${loaded ? 'is-loaded' : ''}`} src={artwork.src} width={artwork.width} height={artwork.height} alt={artwork.alt} loading="eager" unoptimized onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+      <ArtworkWatermark />
+    </div>
     {!loaded && <output className="face-preview-status">{failed ? 'No se pudo cargar la vista ampliada.' : 'Cargando obra…'}</output>}
   </div>;
 }
@@ -72,7 +79,10 @@ export function PortfolioGallery() {
     <div id="portfolio-gallery" className={`artwork-gallery ${category === 'Dibujos' || category === 'Todos' ? 'artwork-gallery-editorial' : ''}`}>
       {visibleItems.map((item, index) => item.kind === 'artwork' ? <figure className={`portfolio-artwork ${item.category === 'Dibujos' ? 'portfolio-drawing' : ''}`} key={item.id}>
         <Button variant="ghost" className="face-artwork-button" aria-haspopup="dialog" aria-label={`Ampliar ${item.title.toLocaleLowerCase('es')} ${index + 1}`} onClick={event => { returnFocusRef.current = event.currentTarget; setSelectedId(item.id); }}>
-          <Image className="face-artwork-image" src={item.thumbnail} width={item.thumbnailWidth} height={item.thumbnailHeight} alt={item.alt} loading="lazy" unoptimized />
+          <span className="artwork-image-wrap" style={{ aspectRatio: `${item.thumbnailWidth} / ${item.thumbnailHeight}` }}>
+            <Image className="face-artwork-image" src={item.thumbnail} width={item.thumbnailWidth} height={item.thumbnailHeight} alt={item.alt} loading="lazy" unoptimized />
+            <ArtworkWatermark />
+          </span>
           <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
         </Button>
         <figcaption><span>{item.title}</span><span className="artwork-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></figcaption>

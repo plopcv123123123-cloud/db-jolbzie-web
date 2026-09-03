@@ -6,6 +6,7 @@ import { ArrowDown, ArrowUpRight, Heart, Menu, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SocialLinks } from '@/components/social-links';
 import { PortfolioGallery } from '@/components/portfolio-gallery';
+import { commissionTopics, discordInviteUrl } from '@/data/commissions';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -15,7 +16,6 @@ const services = [
   { title: 'Arte digital', description: 'Dibujos, ilustraciones, iconos y banners creados por nuestro equipo para darle forma a tus ideas.', tag: 'Del boceto a la historia' },
   { title: 'Pedidos personalizados', description: '¿Tienes algo diferente en mente? Cuéntanos tu idea y creemos algo especialmente para ti.', tag: 'Tu idea empieza aquí' },
 ];
-const terms = ['Pagos', 'Revisiones', 'Tiempo de entrega', 'Derechos de uso', 'Uso comercial', 'Reembolsos'];
 const navigation = [['Portafolio', '#portfolio'], ['Servicios', '#services'], ['Nosotros', '#about'], ['Términos', '#terms']];
 
 function Star({ className = '' }: { className?: string }) {
@@ -24,16 +24,9 @@ function Star({ className = '' }: { className?: string }) {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return <div className="section-label"><span className="label-star" aria-hidden="true">✳</span>{children}<span className="label-line" /></div>;
 }
-function MediaPlaceholder({ label, small = false }: { label: string; small?: boolean }) {
-  return <div className={`placeholder-content ${small ? 'small' : ''}`}>
-    <span className="placeholder-mark" aria-hidden="true"><Plus size={19} strokeWidth={1} /></span>
-    <span className="placeholder-label">{label}</span><span className="placeholder-note">Próximamente: obra original</span>
-  </div>;
-}
-
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [dialog, setDialog] = useState<'commission' | 'pricing' | null>(null);
+  const [dialog, setDialog] = useState<'commission' | null>(null);
 
   return <>
     <a href="#main" className="skip-link">Saltar al contenido</a>
@@ -65,14 +58,52 @@ export default function Home() {
 
       <PortfolioGallery />
 
-      <div className="about-terms"><section id="about" className="about-section" aria-labelledby="about-title"><SectionLabel><h2 id="about-title">SOBRE NOSOTROS</h2></SectionLabel><div className="about-content"><div className="about-art"><div className="about-outline" aria-hidden="true" /><div className="about-media"><MediaPlaceholder label="Nuestro colectivo" small /></div><Star className="about-star" /><span className="about-sticker" aria-hidden="true">nuestro equipo ♡</span></div><div className="about-copy"><h3>Hola, somos Jolbzie<span className="lilac">.</span> <span className="greeting-star" aria-hidden="true">✳</span></h3><p>Somos un grupo creativo que trabaja en UGC, caras personalizadas, dibujos, ilustraciones y arte digital.</p><p>Nos encanta convertir ideas en creaciones con personalidad. Cuidamos cada detalle y unimos nuestros estilos para crear algo único, muy <em>tuyo</em>.</p><p className="about-thanks">Gracias por estar aquí. Creemos algo que te encante.</p><span className="signature handwritten">— Equipo Jolbzie ♡</span></div></div></section>
-      <section id="terms" className="terms-section" aria-labelledby="terms-title"><SectionLabel><h2 id="terms-title">TÉRMINOS DE SERVICIO</h2></SectionLabel><p className="terms-intro">Todo claro antes de empezar.</p><Accordion className="terms-accordion">{terms.map(term => <AccordionItem key={term} value={term}><AccordionTrigger className="terms-trigger">{term}<Plus className="term-plus" size={14} /></AccordionTrigger><AccordionContent className="terms-content">La información sobre {term.toLocaleLowerCase('es')} estará disponible aquí antes de abrir las comisiones. Vuelve pronto para consultar las condiciones de Jolbzie.</AccordionContent></AccordionItem>)}</Accordion></section></div>
+      <div className="about-terms">
+        <section id="about" className="about-section" aria-labelledby="about-title">
+          <SectionLabel><h2 id="about-title">SOBRE NOSOTROS</h2></SectionLabel>
+          <div className="about-content">
+            <div className="about-art">
+              <Image className="about-banner" src="/images/db-jolbzie-hero.png" alt="Identidad de DB_JOLBZIE: los tres personajes del colectivo junto a su nombre, en violeta y rosa." width={1440} height={476} loading="lazy" unoptimized />
+              <Star className="about-star" />
+            </div>
+            <div className="about-copy">
+              <h3>Hola, somos Jolbzie<span className="lilac">.</span> <span className="greeting-star" aria-hidden="true">✳</span></h3>
+              <p>Somos un grupo creativo que trabaja en UGC, caras personalizadas, dibujos, ilustraciones y arte digital.</p>
+              <p>Nos encanta convertir ideas en creaciones con personalidad. Cuidamos cada detalle y unimos nuestros estilos para crear algo único, muy <em>tuyo</em>.</p>
+              <p className="about-thanks">Gracias por estar aquí. Creemos algo que te encante.</p>
+              <span className="signature handwritten">— Equipo Jolbzie ♡</span>
+            </div>
+          </div>
+        </section>
+        <section id="terms" className="terms-section" aria-labelledby="terms-title">
+          <SectionLabel><h2 id="terms-title">TÉRMINOS DE SERVICIO</h2></SectionLabel>
+          <p className="terms-intro">Tu comisión, paso a paso. Coordinamos los detalles contigo por Discord.</p>
+          <Accordion className="terms-accordion">
+            {commissionTopics.map(topic => <AccordionItem key={topic.title} value={topic.title}>
+              <AccordionTrigger className="terms-trigger">{topic.title}<Plus className="term-plus" size={17} aria-hidden="true" /></AccordionTrigger>
+              <AccordionContent className="terms-content">
+                <p>{topic.description}</p>
+                {topic.showDiscordLink && <a className="terms-discord-link" href={discordInviteUrl} target="_blank" rel="noopener noreferrer">Entrar al servidor de Discord <ArrowUpRight size={15} aria-hidden="true" /></a>}
+              </AccordionContent>
+            </AccordionItem>)}
+          </Accordion>
+        </section>
+      </div>
 
-      <section id="commission" className="commission-section" aria-labelledby="commission-title"><div className="cta-orbit orbit-one" aria-hidden="true" /><div className="cta-orbit orbit-two" aria-hidden="true" /><Star className="cta-star-one" /><Star className="cta-star-two" /><span className="cta-small-star" aria-hidden="true">✧</span><p className="eyebrow">TU IDEA. NUESTRA CREATIVIDAD. UN TOQUE DE MAGIA.</p><h2 id="commission-title">Creemos algo <span className="handwritten">muy tuyo.</span></h2><p>¿Tienes un personaje, un concepto o una idea en mente?</p><div className="cta-buttons"><Button className="button button-primary" onClick={() => setDialog('commission')}>Pedir una comisión <ArrowUpRight size={16} /></Button><Button className="button button-outline" variant="outline" onClick={() => setDialog('pricing')}>Ver precios y condiciones</Button></div><span className="cta-love" aria-hidden="true">♡</span></section>
+      <section id="commission" className="commission-section" aria-labelledby="commission-title">
+        <div className="cta-orbit orbit-one" aria-hidden="true" /><div className="cta-orbit orbit-two" aria-hidden="true" />
+        <Star className="cta-star-one" /><Star className="cta-star-two" />
+        <div className="commission-copy">
+          <p className="eyebrow">TU IDEA. NUESTRA CREATIVIDAD. UN TOQUE DE MAGIA.</p>
+          <h2 id="commission-title">Creemos algo <span className="handwritten">muy tuyo.</span></h2>
+          <p className="commission-description">¿Tienes un personaje, un concepto o una idea en mente? Escríbenos por Discord y abre tu ticket para empezar.</p>
+        </div>
+        <div className="cta-buttons"><a className="button button-primary commission-discord" href={discordInviteUrl} target="_blank" rel="noopener noreferrer">Abrir ticket en Discord <ArrowUpRight size={19} aria-hidden="true" /></a></div>
+      </section>
     </main>
 
     <footer className="site-footer"><div className="footer-inner"><div><a className="wordmark" href="#top">DB_JOLBZIE<span>✦</span></a><p>Muchas ideas. Un mismo impulso creativo.</p></div><p className="footer-copyright">© {new Date().getFullYear()} DB_JOLBZIE</p></div></footer>
 
-    <Dialog open={dialog !== null} onOpenChange={open => { if (!open) setDialog(null); }}><DialogContent className="artist-dialog"><span className="dialog-sparkle" aria-hidden="true">✦</span><p className="eyebrow">COLECTIVO DB_JOLBZIE</p><DialogTitle className="dialog-title">{dialog === 'commission' ? 'Tu idea empieza aquí.' : 'Todo claro desde el inicio.'}</DialogTitle><DialogDescription className="dialog-description">{dialog === 'commission' ? 'Pronto podrás pedir tu comisión. Aquí encontrarás nuestros datos de contacto y la disponibilidad del equipo cuando todo esté listo.' : 'Estamos preparando los precios y las condiciones de las comisiones. Podrás consultarlos aquí antes de que abramos los pedidos.'}</DialogDescription><div className="dialog-note"><Heart size={16} />{dialog === 'commission' ? 'Mientras tanto, imagina tu proyecto, su estilo y esos detalles que lo hacen único.' : 'Gracias por ser parte de nuestro rincón creativo.'}</div><Button className="button button-primary" onClick={() => { setDialog(null); document.getElementById(dialog === 'pricing' ? 'terms' : 'services')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }); }}>{dialog === 'pricing' ? 'Ver condiciones' : 'Ver lo que ofrecemos'}<ArrowDown size={15} /></Button></DialogContent></Dialog>
+    <Dialog open={dialog !== null} onOpenChange={open => { if (!open) setDialog(null); }}><DialogContent className="artist-dialog"><span className="dialog-sparkle" aria-hidden="true">✦</span><p className="eyebrow">COLECTIVO DB_JOLBZIE</p><DialogTitle className="dialog-title">Tu idea empieza aquí.</DialogTitle><DialogDescription className="dialog-description">Gestionamos las comisiones por tickets en Discord. Entra al servidor y abre un ticket para contarnos tu idea y consultar los detalles con el equipo.</DialogDescription><div className="dialog-note"><Heart size={16} />Puedes compartir tus referencias, el estilo que buscas y cualquier detalle de tu proyecto.</div><a className="button button-primary" href={discordInviteUrl} target="_blank" rel="noopener noreferrer">Abrir ticket en Discord <ArrowUpRight size={17} aria-hidden="true" /></a></DialogContent></Dialog>
   </>;
 }
