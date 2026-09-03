@@ -15,6 +15,7 @@ export type UgcProject = {
   title: string;
   type: string;
   description?: string;
+  coverMedia: UgcMedia;
   mainMedia: UgcMedia;
   galleryMedia: UgcMedia[];
   robloxUrl?: string;
@@ -29,7 +30,7 @@ export const ugcProjects: UgcProject[] = [
     title: 'Vara Celestial',
     type: 'Accesorio UGC · Espalda',
     description: 'Una vara fantástica con detalles de conejo, tonos violetas y un cristal luminoso.',
-    mainMedia: {
+    coverMedia: {
       id: 'vara-celestial-principal',
       type: 'image',
       src: '/portfolio/ugc/vara-celestial-principal.png',
@@ -37,7 +38,24 @@ export const ugcProjects: UgcProject[] = [
       width: 740,
       height: 666,
     },
+    mainMedia: {
+      id: 'vara-celestial-video',
+      type: 'video',
+      src: '/portfolio/ugc/vara-celestial-video.mp4',
+      poster: '/portfolio/ugc/vara-celestial-principal.png',
+      alt: 'Video de presentación de la Vara Celestial',
+      width: 800,
+      height: 800,
+    },
     galleryMedia: [
+      {
+        id: 'vara-celestial-principal',
+        type: 'image',
+        src: '/portfolio/ugc/vara-celestial-principal.png',
+        alt: 'Vista frontal de la Vara Celestial con figura de conejo y cristal azul',
+        width: 740,
+        height: 666,
+      },
       {
         id: 'vara-celestial-detalle',
         type: 'image',
@@ -47,13 +65,12 @@ export const ugcProjects: UgcProject[] = [
         height: 684,
       },
       {
-        id: 'vara-celestial-video',
-        type: 'video',
-        src: '/portfolio/ugc/vara-celestial-video.mp4',
-        poster: '/portfolio/ugc/vara-celestial-principal.png',
-        alt: 'Video de presentación de la Vara Celestial',
+        id: 'vara-celestial-roblox',
+        type: 'image',
+        src: '/portfolio/ugc/vara-celestial-roblox.png',
+        alt: 'Página de la Vara Celestial de Franch en Roblox',
         width: 800,
-        height: 800,
+        height: 446,
       },
     ],
     robloxUrl: 'https://www.roblox.com/es/catalog/122165561426327/Vara-Celestial-de-Franch',
@@ -66,7 +83,7 @@ export const ugcProjects: UgcProject[] = [
     title: 'Capa de Teto',
     type: 'Accesorio UGC · Frontal',
     description: 'Una capa ilustrada que lleva una expresión de Teto Kasane al avatar.',
-    mainMedia: {
+    coverMedia: {
       id: 'capa-teto-principal',
       type: 'image',
       src: '/portfolio/ugc/capa-teto-principal.png',
@@ -74,7 +91,24 @@ export const ugcProjects: UgcProject[] = [
       width: 784,
       height: 716,
     },
+    mainMedia: {
+      id: 'capa-teto-video',
+      type: 'video',
+      src: '/portfolio/ugc/capa-teto-video.mp4',
+      poster: '/portfolio/ugc/capa-teto-principal.png',
+      alt: 'Video de presentación de la Capa de Teto',
+      width: 800,
+      height: 800,
+    },
     galleryMedia: [
+      {
+        id: 'capa-teto-principal',
+        type: 'image',
+        src: '/portfolio/ugc/capa-teto-principal.png',
+        alt: 'Vista frontal de la Capa de Teto con ilustración en tonos rosados',
+        width: 784,
+        height: 716,
+      },
       {
         id: 'capa-teto-detalle',
         type: 'image',
@@ -84,13 +118,12 @@ export const ugcProjects: UgcProject[] = [
         height: 667,
       },
       {
-        id: 'capa-teto-video',
-        type: 'video',
-        src: '/portfolio/ugc/capa-teto-video.mp4',
-        poster: '/portfolio/ugc/capa-teto-principal.png',
-        alt: 'Video de presentación de la Capa de Teto',
+        id: 'capa-teto-roblox',
+        type: 'image',
+        src: '/portfolio/ugc/capa-teto-roblox.png',
+        alt: 'Página de la Capa de Teto Kasane en Roblox',
         width: 800,
-        height: 800,
+        height: 360,
       },
     ],
     robloxUrl: 'https://www.roblox.com/es/catalog/84215497891095/Teto-Kasane-Capa',

@@ -34,7 +34,7 @@ function projectMediaToPreview(project: UgcProject, media: UgcMedia): PreviewMed
 function previewMediaFor(items: PortfolioItem[], includeUgcGallery: boolean) {
   return items.flatMap(item => item.kind === 'artwork'
     ? [artworkToPreview(item)]
-    : (includeUgcGallery ? [item.mainMedia, ...item.galleryMedia] : [item.mainMedia]).map(media => projectMediaToPreview(item, media)));
+    : (includeUgcGallery ? [item.mainMedia, ...item.galleryMedia] : [item.coverMedia]).map(media => projectMediaToPreview(item, media)));
 }
 
 function MediaThumbnail({ media, eager = false }: { media: UgcMedia; eager?: boolean }) {
@@ -73,8 +73,10 @@ export function PortfolioGallery() {
   const filteredItems = isOverview ? featuredPortfolioItems : portfolioItems.filter(item => item.category === category);
   const visibleItems = filteredItems.slice(0, visibleCount);
   const previewItems = previewMediaFor(filteredItems, category === 'UGC');
-  const selectedIndex = previewItems.findIndex(item => item.previewId === selectedId);
-  const selectedMedia = previewItems[selectedIndex];
+  const selectedUgcProjectId = category === 'UGC' && selectedId?.startsWith('ugc:') ? selectedId.split(':')[1] : null;
+  const activePreviewItems = selectedUgcProjectId ? previewItems.filter(item => item.previewId.startsWith(`ugc:${selectedUgcProjectId}:`)) : previewItems;
+  const selectedIndex = activePreviewItems.findIndex(item => item.previewId === selectedId);
+  const selectedMedia = activePreviewItems[selectedIndex];
 
   function changeCategory(nextCategory: PortfolioFilter) {
     setCategory(nextCategory);
@@ -88,9 +90,9 @@ export function PortfolioGallery() {
   }
 
   function changeMedia(direction: number) {
-    if (!previewItems.length) return;
-    const nextIndex = (selectedIndex + direction + previewItems.length) % previewItems.length;
-    setSelectedId(previewItems[nextIndex].previewId);
+    if (!activePreviewItems.length) return;
+    const nextIndex = (selectedIndex + direction + activePreviewItems.length) % activePreviewItems.length;
+    setSelectedId(activePreviewItems[nextIndex].previewId);
   }
 
   function handlePreviewKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -118,8 +120,9 @@ export function PortfolioGallery() {
     </div>
 
     {category === 'UGC' ? <div id="portfolio-gallery" className="ugc-project-gallery">
-      {visibleItems.map(item => item.kind === 'ugc' && <article className="ugc-project" key={item.id}>
-        <Button variant="ghost" className="ugc-main-media" aria-haspopup="dialog" aria-label={`Ampliar imagen principal de ${item.title}`} onClick={event => openPreview(event, projectMediaToPreview(item, item.mainMedia).previewId)}>
+      {visibleItems.map((item, projectIndex) => item.kind === 'ugc' && <article className="ugc-project" key={item.id}>
+        <span className="ugc-project-index" aria-hidden="true">PROYECTO {String(projectIndex + 1).padStart(2, '0')} <b>✦</b></span>
+        <Button variant="ghost" className="ugc-main-media" aria-haspopup="dialog" aria-label={`Ampliar ${item.mainMedia.type === 'video' ? 'video' : 'imagen'} principal de ${item.title}`} onClick={event => openPreview(event, projectMediaToPreview(item, item.mainMedia).previewId)}>
           <span className="ugc-media-canvas" style={{ aspectRatio: `${item.mainMedia.width} / ${item.mainMedia.height}` }}><MediaThumbnail media={item.mainMedia} /></span>
           <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
         </Button>
@@ -137,7 +140,7 @@ export function PortfolioGallery() {
       </article>)}
     </div> : <div id="portfolio-gallery" className={`artwork-gallery ${category === 'Dibujos' || category === 'Todos' ? 'artwork-gallery-editorial' : ''}`}>
       {visibleItems.map((item, index) => {
-        const media = item.kind === 'artwork' ? artworkToPreview(item) : projectMediaToPreview(item, item.mainMedia);
+        const media = item.kind === 'artwork' ? artworkToPreview(item) : projectMediaToPreview(item, item.coverMedia);
         return <figure className={`portfolio-artwork ${item.category === 'Dibujos' ? 'portfolio-drawing' : ''} ${item.kind === 'ugc' ? 'portfolio-ugc-overview' : ''}`} key={item.id}>
           <Button variant="ghost" className="face-artwork-button" aria-haspopup="dialog" aria-label={`Ampliar ${item.title.toLocaleLowerCase('es')} ${index + 1}`} onClick={event => openPreview(event, media.previewId)}>
             <span className="artwork-image-wrap" style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
@@ -160,9 +163,9 @@ export function PortfolioGallery() {
         <DialogDescription className="sr-only">Usa los botones o las flechas del teclado para recorrer las obras. Pulsa Escape o haz clic fuera para cerrar.</DialogDescription>
         {selectedMedia && <ExpandedPreview media={selectedMedia} key={selectedMedia.previewId} />}
         <div className="face-preview-navigation">
-          <Button variant="outline" className="face-preview-control" size="icon" aria-label="Ver obra anterior" disabled={previewItems.length < 2} onClick={() => changeMedia(-1)}><ArrowLeft size={20} /></Button>
-          <p className="face-preview-counter" aria-live="polite" aria-atomic="true">{selectedIndex + 1} de {previewItems.length}</p>
-          <Button variant="outline" className="face-preview-control" size="icon" aria-label="Ver obra siguiente" disabled={previewItems.length < 2} onClick={() => changeMedia(1)}><ArrowRight size={20} /></Button>
+          <Button variant="outline" className="face-preview-control" size="icon" aria-label="Ver obra anterior" disabled={activePreviewItems.length < 2} onClick={() => changeMedia(-1)}><ArrowLeft size={20} /></Button>
+          <p className="face-preview-counter" aria-live="polite" aria-atomic="true">{selectedIndex + 1} de {activePreviewItems.length}</p>
+          <Button variant="outline" className="face-preview-control" size="icon" aria-label="Ver obra siguiente" disabled={activePreviewItems.length < 2} onClick={() => changeMedia(1)}><ArrowRight size={20} /></Button>
         </div>
       </DialogContent>
     </Dialog>
