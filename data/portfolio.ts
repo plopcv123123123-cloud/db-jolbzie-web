@@ -40,13 +40,25 @@ export const drawingArtworks: PortfolioArtwork[] = drawingData.map(artwork => ({
   category: 'Dibujos',
 }));
 
-// Alternate categories so the combined selection gives both collections space.
-const combinedArtworks = Array.from(
-  { length: Math.max(faceArtworks.length, drawingArtworks.length) },
-  (_, index) => [drawingArtworks[index], faceArtworks[index]].filter((item): item is PortfolioArtwork => Boolean(item)),
-).flat();
-
 export const portfolioItems: PortfolioItem[] = [
   { id: 'ugc-upcoming', kind: 'upcoming', category: 'UGC', title: 'Un mundo de pequeños detalles', label: 'Proyecto UGC destacado' },
-  ...combinedArtworks,
+  ...faceArtworks,
+  ...drawingArtworks,
 ];
+
+// Edit this short selection independently of the complete category collections.
+// UGC retains its existing placeholder until real assets are supplied.
+export const featuredPortfolioIds = [
+  'ilustracion-02',
+  'cara-01',
+  'ilustracion-18',
+  'cara-14',
+  'ilustracion-10',
+  'ugc-upcoming',
+  'ilustracion-21',
+  'cara-07',
+] as const;
+
+export const featuredPortfolioItems = featuredPortfolioIds
+  .map(id => portfolioItems.find(item => item.id === id))
+  .filter((item): item is PortfolioItem => item !== undefined);

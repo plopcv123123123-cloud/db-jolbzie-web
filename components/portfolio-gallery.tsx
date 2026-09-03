@@ -5,9 +5,9 @@ import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Plus, X, ZoomIn } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
-import { portfolioFilters, portfolioItems, type PortfolioArtwork, type PortfolioFilter } from '@/data/portfolio';
+import { featuredPortfolioItems, portfolioFilters, portfolioItems, type PortfolioArtwork, type PortfolioFilter } from '@/data/portfolio';
 
-const PAGE_SIZE = 12;
+const PAGE_SIZE = 9;
 
 function ArtworkPreview({ artwork }: { artwork: PortfolioArtwork }) {
   const [loaded, setLoaded] = useState(false);
@@ -26,7 +26,8 @@ export function PortfolioGallery() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const returnFocusRef = useRef<HTMLButtonElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
-  const filteredItems = portfolioItems.filter(item => category === 'Todos' || item.category === category);
+  const isOverview = category === 'Todos';
+  const filteredItems = isOverview ? featuredPortfolioItems : portfolioItems.filter(item => item.category === category);
   const visibleItems = filteredItems.slice(0, visibleCount);
   const previewItems = filteredItems.filter((item): item is PortfolioArtwork => item.kind === 'artwork');
   const selectedIndex = previewItems.findIndex(item => item.id === selectedId);
@@ -55,11 +56,17 @@ export function PortfolioGallery() {
 
   return <section id="portfolio" className="portfolio-section" aria-labelledby="portfolio-title">
     <div className="portfolio-heading">
-      <div className="section-label"><span className="label-star" aria-hidden="true">✳</span><h2 id="portfolio-title">TRABAJOS DESTACADOS</h2><span className="label-line" /></div>
-      <fieldset className="gallery-filters" aria-label="Filtrar el portafolio">
-        {portfolioFilters.map(filter => <Button key={filter} variant="ghost" className={`filter-button ${category === filter ? 'active' : ''}`} aria-pressed={category === filter} aria-controls="portfolio-gallery" onClick={() => changeCategory(filter)}>{filter}</Button>)}
-      </fieldset>
-      <span className="gallery-aside">un vistazo a lo que creamos <span className="star" aria-hidden="true">✦</span></span>
+      <div className="portfolio-intro">
+        <div className="section-label"><span className="label-star" aria-hidden="true">✳</span><span>PORTAFOLIO</span><span className="label-line" /></div>
+        <h2 id="portfolio-title">Ideas con personalidad.</h2>
+        <p>Una selección de nuestro universo creativo.</p>
+      </div>
+      <div className="portfolio-toolbar">
+        <fieldset className="gallery-filters" aria-label="Filtrar el portafolio">
+          {portfolioFilters.map(filter => <Button key={filter} variant="ghost" className={`filter-button ${category === filter ? 'active' : ''}`} aria-pressed={category === filter} aria-controls="portfolio-gallery" onClick={() => changeCategory(filter)}>{filter}</Button>)}
+        </fieldset>
+        <span className="gallery-aside">un vistazo a lo que creamos <span className="star" aria-hidden="true">✦</span></span>
+      </div>
     </div>
 
     <div id="portfolio-gallery" className={`artwork-gallery ${category === 'Dibujos' || category === 'Todos' ? 'artwork-gallery-editorial' : ''}`}>
@@ -76,9 +83,9 @@ export function PortfolioGallery() {
     </div>
 
     <div className="gallery-bottom">
-      <output className="gallery-count">{visibleItems.length} de {filteredItems.length} {category === 'Caras' ? 'caras personalizadas' : category === 'Dibujos' ? 'ilustraciones' : 'trabajos'}</output>
-      {visibleCount < filteredItems.length && <Button variant="outline" className="button button-outline gallery-more" onClick={() => setVisibleCount(count => count + PAGE_SIZE)}>Mostrar más <Plus size={15} /></Button>}
-      {previewItems.length > 0 && <p className="gallery-hint">Selecciona una obra para verla en detalle.</p>}
+      <output className="gallery-count">{isOverview ? 'Selección destacada' : `${visibleItems.length} de ${filteredItems.length} ${category === 'Caras' ? 'caras personalizadas' : category === 'Dibujos' ? 'ilustraciones' : 'trabajos'}`}</output>
+      {!isOverview && visibleCount < filteredItems.length && <Button variant="outline" className="button button-outline gallery-more" aria-controls="portfolio-gallery" onClick={() => setVisibleCount(count => count + PAGE_SIZE)}>Mostrar más <Plus size={16} aria-hidden="true" /></Button>}
+      {previewItems.length > 0 && <p className="gallery-hint">{isOverview ? 'Explora cada categoría para descubrir la colección completa.' : 'Selecciona una obra para verla en detalle.'}</p>}
     </div>
 
     <Dialog open={selectedId !== null} onOpenChange={open => { if (!open) setSelectedId(null); }}>
