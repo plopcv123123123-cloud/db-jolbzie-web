@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Heart, Menu, Plus, Sparkles, X } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowDown, ArrowUpRight, Heart, Menu, Plus, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { SocialLinks } from '@/components/social-links';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
@@ -57,14 +58,13 @@ export default function Home() {
     <main id="main" className="page-shell">
       <section className="hero" aria-labelledby="hero-title"><div className="hero-copy">
         <p className="eyebrow"><span className="tiny-dot" /> COLECTIVO CREATIVO · ARTE DIGITAL Y UGC</p>
-        <h1 id="hero-title">Arte hecho<br />a <span className="hero-highlight">tu medida</span><span className="lilac">.</span><Star className="title-star" /></h1>
-        <p className="hero-description">Creamos UGC, caras personalizadas, dibujos, ilustraciones, iconos y banners. Damos vida a <em>tus</em> ideas con comisiones personalizadas.</p>
+        <h1 id="hero-title">Arte, UGC e<br />ilustraciones<br /><span className="hero-highlight">a tu medida</span><span className="lilac">.</span></h1>
+        <p className="hero-description">Creamos UGC, caras personalizadas, dibujos, ilustraciones, iconos, banners y comisiones especiales. Arte digital con un estilo único y mucha personalidad.</p>
         <div className="hero-buttons"><a className="button button-primary" href="#portfolio">Ver portafolio <ArrowDown size={16} /></a><Button className="button button-outline" variant="outline" onClick={() => setDialog('commission')}>Pedir comisión <ArrowUpRight size={16} /></Button></div>
         <p className="hero-footnote"><Heart size={12} strokeWidth={1.4} /> Distintas miradas, una misma pasión por crear.</p>
-      </div><div className="hero-art" aria-label="Espacio reservado para la portada principal con tres personajes">
-        <div className="hero-blob" aria-hidden="true" /><div className="hero-orbit" aria-hidden="true" /><Star className="hero-star-one" /><Star className="hero-star-two" /><Star className="hero-star-three" /><div className="hero-backplate" aria-hidden="true" />
-        <div className="hero-media"><span className="media-corner top-left" aria-hidden="true" /><span className="media-corner bottom-right" aria-hidden="true" /><MediaPlaceholder label="Portada con tres personajes" /><span className="media-index" aria-hidden="true">01 / NUESTRO UNIVERSO CREATIVO</span></div>
-        <span className="hero-sticker"><Sparkles size={14} strokeWidth={1.5} /> con un toque de magia</span><span className="handwritten hero-caption">un espacio para imaginar <span aria-hidden="true">⤴</span></span>
+      </div><div className="hero-visual">
+        <Image className="hero-banner" src="/images/db-jolbzie-hero.png" alt="Banner oficial de Jolbzie: tres personajes ilustrados junto al nombre del colectivo, en tonos violeta y rosa." width={1440} height={476} priority unoptimized />
+        <Star className="banner-star-one" /><Star className="banner-star-two" />
       </div></section>
 
       <section id="services" className="services-section" aria-labelledby="services-title"><SectionLabel><h2 id="services-title">LO QUE OFRECEMOS</h2></SectionLabel><div className="services-grid">{services.map((service, index) => <article className="service" key={service.title}><div className="service-top"><span className="service-number">0{index + 1}</span><span className="service-accent" aria-hidden="true">{index === 1 ? '✧' : index === 3 ? '♡' : '✦'}</span></div><h3>{service.title}</h3><p>{service.description}</p><span className="service-tag">{service.tag}</span></article>)}</div></section>
