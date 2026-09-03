@@ -39,9 +39,9 @@ export const ugcProjects: UgcProject[] = [
       height: 666,
     },
     mainMedia: {
-      id: 'vara-celestial-video',
+      id: 'ugc-video-02',
       type: 'video',
-      src: '/portfolio/ugc/vara-celestial-video.mp4',
+      src: '/portfolio/ugc/ugc-video-02.mp4',
       poster: '/portfolio/ugc/vara-celestial-principal.png',
       alt: 'Video de presentación de la Vara Celestial',
       width: 800,
@@ -92,9 +92,9 @@ export const ugcProjects: UgcProject[] = [
       height: 716,
     },
     mainMedia: {
-      id: 'capa-teto-video',
+      id: 'ugc-video-01',
       type: 'video',
-      src: '/portfolio/ugc/capa-teto-video.mp4',
+      src: '/portfolio/ugc/ugc-video-01.mp4',
       poster: '/portfolio/ugc/capa-teto-principal.png',
       alt: 'Video de presentación de la Capa de Teto',
       width: 800,
