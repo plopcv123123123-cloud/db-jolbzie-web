@@ -105,17 +105,22 @@ export function PortfolioGallery() {
   }
 
   return <section id="portfolio" className="portfolio-section" aria-labelledby="portfolio-title">
+    <div className="portfolio-backdrop" aria-hidden="true">
+      <span className="portfolio-orbit portfolio-orbit-one" />
+      <span className="portfolio-orbit portfolio-orbit-two" />
+      <span className="portfolio-sparkle portfolio-sparkle-one">✦</span>
+      <span className="portfolio-sparkle portfolio-sparkle-two">✧</span>
+    </div>
     <div className="portfolio-heading">
       <div className="portfolio-intro">
         <div className="section-label"><span className="label-star" aria-hidden="true">✳</span><span>PORTAFOLIO</span><span className="label-line" /></div>
         <h2 id="portfolio-title">Ideas con personalidad.</h2>
-        <p>Una selección de nuestro universo creativo.</p>
+        <div className="portfolio-intro-footer"><p>Una selección de nuestro universo creativo.</p><span className="gallery-aside">un vistazo a lo que creamos <span className="star" aria-hidden="true">✦</span></span></div>
       </div>
       <div className="portfolio-toolbar">
         <fieldset className="gallery-filters" aria-label="Filtrar el portafolio">
           {portfolioFilters.map(filter => <Button key={filter} variant="ghost" className={`filter-button ${category === filter ? 'active' : ''}`} aria-pressed={category === filter} aria-controls="portfolio-gallery" onClick={() => changeCategory(filter)}>{filter}</Button>)}
         </fieldset>
-        <span className="gallery-aside">un vistazo a lo que creamos <span className="star" aria-hidden="true">✦</span></span>
       </div>
     </div>
 
@@ -141,12 +146,16 @@ export function PortfolioGallery() {
     </div> : <div id="portfolio-gallery" className={`artwork-gallery ${category === 'Dibujos' || category === 'Todos' ? 'artwork-gallery-editorial' : ''}`}>
       {visibleItems.map((item, index) => {
         const media = item.kind === 'artwork' ? artworkToPreview(item) : projectMediaToPreview(item, item.coverMedia);
+        const categoryLabel = item.kind === 'ugc' ? 'UGC' : item.category === 'Caras' ? 'CARA PERSONALIZADA' : 'ILUSTRACIÓN';
         return <figure className={`portfolio-artwork ${item.category === 'Dibujos' ? 'portfolio-drawing' : ''} ${item.kind === 'ugc' ? 'portfolio-ugc-overview' : ''}`} key={item.id}>
-          <Button variant="ghost" className="face-artwork-button" aria-haspopup="dialog" aria-label={`Ampliar ${item.title.toLocaleLowerCase('es')} ${index + 1}`} onClick={event => openPreview(event, media.previewId)}>
-            <span className="artwork-image-wrap" style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
-            <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
-          </Button>
-          <figcaption><span>{item.title}</span><span className="artwork-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span></figcaption>
+          <div className="artwork-card-frame">
+            <Button variant="ghost" className="face-artwork-button" aria-haspopup="dialog" aria-label={`Ampliar ${item.title.toLocaleLowerCase('es')} ${index + 1}`} onClick={event => openPreview(event, media.previewId)}>
+              <span className="artwork-image-wrap" style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
+              <span className="artwork-view-cue" aria-hidden="true">Ver obra <ExternalLink size={13} /></span>
+              <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
+            </Button>
+          </div>
+          <figcaption><span className="artwork-caption-copy"><span className="artwork-category">{categoryLabel}</span>{item.kind === 'ugc' && <strong className="artwork-title">{item.title}</strong>}</span><span className="artwork-number" aria-hidden="true"><span>✦</span>{String(index + 1).padStart(2, '0')}</span></figcaption>
         </figure>;
       })}
     </div>}
