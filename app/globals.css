@@ -334,7 +334,7 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 .face-artwork-button::after { position: absolute; z-index: 1; content: ''; left: 0; right: 0; bottom: 0; height: 25%; background: linear-gradient(transparent, #1009196b); opacity: .45; pointer-events: none; transition: opacity 220ms; }
 .face-artwork-image { display: block; width: 100%; height: auto; object-fit: contain; transition: transform 250ms; }
 .artwork-image-wrap { display: block; position: relative; z-index: 0; width: 100%; overflow: hidden; border-radius: 8px; }
-.artwork-watermark { position: absolute; z-index: 2; right: 8px; bottom: 8px; padding: 3px 7px; border: 1px solid #efdcff1c; border-radius: 4px; background: #140b2259; color: #f8efff; font-family: var(--font-display), sans-serif; font-size: clamp(9px, .85vw, 12px); font-weight: 550; line-height: 1.4; letter-spacing: .65px; text-shadow: 0 1px 3px #090310cc; opacity: .78; white-space: nowrap; pointer-events: none; user-select: none; }
+.artwork-watermark { position: absolute; z-index: 4; right: 9px; bottom: 9px; padding: 4px 8px; border: 1px solid #f0ddff4a; border-radius: 5px; background: #10071fba; color: #fff8ff; font-family: var(--font-display), sans-serif; font-size: clamp(10px, .88vw, 13px); font-weight: 650; line-height: 1.35; letter-spacing: .72px; text-shadow: 0 1px 4px #090310, 0 0 9px #d6a9f059; box-shadow: 0 3px 12px #06020ca3, inset 0 1px 0 #ffffff12; opacity: .9; white-space: nowrap; pointer-events: none; user-select: none; }
 .portfolio-drawing .face-artwork-button { aspect-ratio: auto; padding: 14px; background: #2c2436; }
 .portfolio-drawing .face-artwork-image { height: auto; border-radius: 5px; }
 .portfolio-artwork:hover, .portfolio-artwork:focus-within { transform: translateY(-4px); }
@@ -406,11 +406,14 @@ h1 { position: relative; font-size: clamp(42px, 4.2vw, 59px); line-height: 1.09;
 .face-preview-header [data-slot='dialog-title'] { font-size: 22px; font-weight: 500; }
 .face-preview-stage { --preview-height: min(65dvh, 700px); --preview-padding: 14px; position: relative; display: grid; place-items: center; height: var(--preview-height); width: 100%; padding: var(--preview-padding); border-radius: 16px; background: #272033; }
 .preview-artwork-canvas { position: relative; width: min(100%, calc((var(--preview-height) - 2 * var(--preview-padding)) * var(--artwork-ratio))); aspect-ratio: var(--artwork-ratio); }
-.preview-artwork-canvas .artwork-watermark { font-size: clamp(10px, 1vw, 14px); right: 10px; bottom: 10px; }
+.preview-artwork-canvas .artwork-watermark { right: 14px; bottom: 14px; padding: 5px 10px; font-size: clamp(12px, 1.2vw, 18px); opacity: .94; }
+.artwork-watermark-center { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-11deg); color: #fff7ff; font-family: var(--font-display), sans-serif; font-size: clamp(19px, 3.2vw, 44px); font-weight: 700; letter-spacing: clamp(2px, .45vw, 6px); text-shadow: 0 2px 8px #08030ccc, 0 0 16px #b97ed85c; opacity: .14; white-space: nowrap; pointer-events: none; user-select: none; }
 .face-preview-thumbnail, .face-preview-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
 .face-preview-image { opacity: 0; transition: opacity 160ms; }
 .face-preview-image.is-loaded { opacity: 1; }
 .ugc-preview-video { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; background: #110c18; }
+[data-protected-media], [data-protected-media] img, [data-protected-media] video { -webkit-user-select: none; user-select: none; }
+[data-protected-media] img, [data-protected-media] video { -webkit-user-drag: none; }
 .face-preview-status { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 30px); padding: 8px 14px; border-radius: 8px; background: #20132feb; color: #eadbf5; font-size: 11px; }
 .face-preview-navigation { display: flex; align-items: center; justify-content: center; gap: 24px; }
 .face-preview-control { flex-shrink: 0; width: 44px; height: 44px; padding: 0; border: 1px solid #9676b057; border-radius: 11px; background: #2b1e38; color: #e7cffb; }

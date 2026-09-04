@@ -38,10 +38,15 @@ function previewMediaFor(items: PortfolioItem[], includeUgcGallery: boolean) {
 }
 
 function MediaThumbnail({ media, eager = false }: { media: UgcMedia; eager?: boolean }) {
+  const previewMedia = media as UgcMedia & Partial<Pick<PreviewMedia, 'thumbnail' | 'thumbnailWidth' | 'thumbnailHeight'>>;
+  const previewSrc = media.type === 'image' && previewMedia.thumbnail ? previewMedia.thumbnail : media.src;
+  const previewWidth = previewMedia.thumbnailWidth ?? media.width;
+  const previewHeight = previewMedia.thumbnailHeight ?? media.height;
+
   return <>
     {media.type === 'image'
-      ? <Image className="face-artwork-image" src={media.src} width={media.width} height={media.height} alt={media.alt} loading={eager ? 'eager' : 'lazy'} unoptimized />
-      : <><video className="face-artwork-image ugc-video-thumbnail" src={media.src} poster={media.poster} autoPlay loop muted playsInline preload="metadata" aria-label={media.alt} /><span className="ugc-play-mark" aria-hidden="true"><Play size={18} fill="currentColor" /></span></>}
+      ? <Image className="face-artwork-image" src={previewSrc} width={previewWidth} height={previewHeight} alt={media.alt} loading={eager ? 'eager' : 'lazy'} draggable={false} unoptimized />
+      : <><video className="face-artwork-image ugc-video-thumbnail" src={media.src} poster={media.poster} autoPlay loop muted playsInline preload="metadata" controlsList="nodownload noremoteplayback" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={media.alt} /><span className="ugc-play-mark" aria-hidden="true"><Play size={18} fill="currentColor" /></span></>}
     <ArtworkWatermark />
   </>;
 }
@@ -50,13 +55,14 @@ function ExpandedPreview({ media }: { media: PreviewMedia }) {
   const [loaded, setLoaded] = useState(media.type === 'video');
   const [failed, setFailed] = useState(false);
   return <div className="face-preview-stage" aria-busy={!loaded && !failed}>
-    <div className="preview-artwork-canvas" style={{ '--artwork-ratio': media.width / media.height } as CSSProperties}>
+    <div className="preview-artwork-canvas" data-protected-media style={{ '--artwork-ratio': media.width / media.height } as CSSProperties}>
       {media.type === 'video'
-        ? <video className="ugc-preview-video" src={media.src} poster={media.poster} controls autoPlay muted playsInline preload="metadata" aria-label={media.alt} />
+        ? <video className="ugc-preview-video" src={media.src} poster={media.poster} controls autoPlay muted playsInline preload="metadata" controlsList="nodownload noremoteplayback" disablePictureInPicture disableRemotePlayback draggable={false} aria-label={media.alt} />
         : <>
-          {!loaded && media.thumbnail && <Image className="face-preview-thumbnail" src={media.thumbnail} width={media.thumbnailWidth} height={media.thumbnailHeight} alt="" aria-hidden="true" unoptimized />}
-          <Image className={`face-preview-image ${loaded ? 'is-loaded' : ''}`} src={media.src} width={media.width} height={media.height} alt={media.alt} loading="eager" unoptimized onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
+          {!loaded && media.thumbnail && <Image className="face-preview-thumbnail" src={media.thumbnail} width={media.thumbnailWidth} height={media.thumbnailHeight} alt="" aria-hidden="true" draggable={false} unoptimized />}
+          <Image className={`face-preview-image ${loaded ? 'is-loaded' : ''}`} src={media.src} width={media.width} height={media.height} alt={media.alt} loading="eager" draggable={false} unoptimized onLoad={() => setLoaded(true)} onError={() => setFailed(true)} />
         </>}
+      <span className="artwork-watermark-center" aria-hidden="true">DB_JOLBZIE</span>
       <ArtworkWatermark />
     </div>
     {!loaded && <output className="face-preview-status">{failed ? 'No se pudo cargar la vista ampliada.' : 'Cargando obra…'}</output>}
@@ -128,12 +134,12 @@ export function PortfolioGallery() {
       {visibleItems.map((item, projectIndex) => item.kind === 'ugc' && <article className="ugc-project" key={item.id}>
         <span className="ugc-project-index" aria-hidden="true">PROYECTO {String(projectIndex + 1).padStart(2, '0')} <b>✦</b></span>
         <Button variant="ghost" className="ugc-main-media" aria-haspopup="dialog" aria-label={`Ampliar ${item.mainMedia.type === 'video' ? 'video' : 'imagen'} principal de ${item.title}`} onClick={event => openPreview(event, projectMediaToPreview(item, item.mainMedia).previewId)}>
-          <span className="ugc-media-canvas" style={{ aspectRatio: `${item.mainMedia.width} / ${item.mainMedia.height}` }}><MediaThumbnail media={item.mainMedia} /></span>
+          <span className="ugc-media-canvas" data-protected-media style={{ aspectRatio: `${item.mainMedia.width} / ${item.mainMedia.height}` }}><MediaThumbnail media={item.mainMedia} /></span>
           <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
         </Button>
         {item.galleryMedia.length > 0 && <div className="ugc-secondary-media">
           {item.galleryMedia.map(media => <Button key={media.id} variant="ghost" className="ugc-secondary-button" aria-haspopup="dialog" aria-label={`Abrir ${media.alt.toLocaleLowerCase('es')}`} onClick={event => openPreview(event, projectMediaToPreview(item, media).previewId)}>
-            <span className="ugc-media-canvas" style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
+            <span className="ugc-media-canvas" data-protected-media style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
           </Button>)}
         </div>}
         <div className="ugc-project-copy">
@@ -150,7 +156,7 @@ export function PortfolioGallery() {
         return <figure className={`portfolio-artwork ${item.category === 'Dibujos' ? 'portfolio-drawing' : ''} ${item.kind === 'ugc' ? 'portfolio-ugc-overview' : ''}`} key={item.id}>
           <div className="artwork-card-frame">
             <Button variant="ghost" className="face-artwork-button" aria-haspopup="dialog" aria-label={`Ampliar ${item.title.toLocaleLowerCase('es')} ${index + 1}`} onClick={event => openPreview(event, media.previewId)}>
-              <span className="artwork-image-wrap" style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
+              <span className="artwork-image-wrap" data-protected-media style={{ aspectRatio: `${media.width} / ${media.height}` }}><MediaThumbnail media={media} /></span>
               <span className="artwork-view-cue" aria-hidden="true">Ver obra <ExternalLink size={13} /></span>
               <span className="face-zoom-mark" aria-hidden="true"><ZoomIn size={17} /></span>
             </Button>

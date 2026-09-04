@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Outfit, DM_Sans, Caveat } from 'next/font/google';
+import { ProductionProtection } from '@/components/production-protection';
 import './globals.css';
 
 const bodyFont = DM_Sans({
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${displayFont.variable} ${handwrittenFont.variable} antialiased`}
       >
+        <ProductionProtection />
         {children}
       </body>
     </html>

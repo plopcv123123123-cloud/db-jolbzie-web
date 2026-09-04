@@ -49,8 +49,8 @@ export default function Home() {
         <p className="hero-description">Creamos UGC, caras personalizadas, dibujos, ilustraciones, iconos, banners y comisiones especiales. Arte digital con un estilo único y mucha personalidad.</p>
         <div className="hero-buttons"><a className="button button-primary" href="#portfolio">Ver portafolio <ArrowDown size={16} /></a><Button className="button button-outline" variant="outline" onClick={() => setDialog('commission')}>Pedir comisión <ArrowUpRight size={16} /></Button></div>
         <p className="hero-footnote"><Heart size={12} strokeWidth={1.4} /> Distintas miradas, una misma pasión por crear.</p>
-      </div><div className="hero-visual">
-        <Image className="hero-banner" src="/images/db-jolbzie-hero.png" alt="Banner oficial de Jolbzie: tres personajes ilustrados junto al nombre del colectivo, en tonos violeta y rosa." width={1440} height={476} priority unoptimized />
+      </div><div className="hero-visual" data-protected-media>
+        <Image className="hero-banner" src="/images/db-jolbzie-hero.png" alt="Banner oficial de Jolbzie: tres personajes ilustrados junto al nombre del colectivo, en tonos violeta y rosa." width={1440} height={476} priority draggable={false} unoptimized />
         <Star className="banner-star-one" /><Star className="banner-star-two" />
       </div></section>
 
@@ -62,8 +62,8 @@ export default function Home() {
         <section id="about" className="about-section" aria-labelledby="about-title">
           <SectionLabel><h2 id="about-title">SOBRE NOSOTROS</h2></SectionLabel>
           <div className="about-content">
-            <div className="about-art">
-              <Image className="about-banner" src="/images/db-jolbzie-hero.png" alt="Identidad de DB_JOLBZIE: los tres personajes del colectivo junto a su nombre, en violeta y rosa." width={1440} height={476} loading="lazy" unoptimized />
+            <div className="about-art" data-protected-media>
+              <Image className="about-banner" src="/images/db-jolbzie-hero.png" alt="Identidad de DB_JOLBZIE: los tres personajes del colectivo junto a su nombre, en violeta y rosa." width={1440} height={476} loading="lazy" draggable={false} unoptimized />
               <Star className="about-star" />
             </div>
             <div className="about-copy">
